@@ -1,5 +1,5 @@
 body {
-    background-color: #ffcfaa;
+    background-color: #ffe8d6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,16 +7,62 @@ body {
     margin: 0;
 }
 
+.user-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: gray;
+    transition: color 0.3s;
+    font-weight: bolder;
+}
+
+.add-icon:hover {
+    color: black;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.email {
+    color: #888;
+    font-size: 0.9em;
+    margin-top: 0;
+}
+
 .container {
-    max-width: 400px;
+    max-width: 300px;
+    min-width: 300px;
+    height: 600px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .search {
@@ -46,11 +92,11 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 10px;
     overflow-y: auto;
     border-radius: 10px;
-    cursor: pointer;
+    flex-grow: 1;
 }
 
 .users-list li {
@@ -60,26 +106,48 @@ body {
     background-color: #f9f9f9;
     transition: background-color 0.3s;
     max-height: 50px;
-    overflow: hidden;
-}
-
-.users-list li:hover {
-    background-color: #e9e9e9;
+    min-height: 70px;
+    width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
 }
 
 .send-invite {
-    margin-top: 20px;
+    display: block;
+    margin: 0 auto;
     padding: 10px 20px;
-    background: linear-gradient(90deg, #f6a461, #eb8634);
+    background: linear-gradient(90deg, #f1b98b, #eeb07d);
     color: white;
     border: none;
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.1s;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.imageSuccess {
+    width: 200px;
+    animation: jump 0.5s ease-out;
 }
 
 .send-invite:hover {
-    background: linear-gradient(90deg, #d18d54, #ba6a29);
-    /* Darker gradient on hover */
+    background: linear-gradient(90deg, #dfab80, #dba172);
+}
+
+.send-invite:active {
+    transform: scale(0.95);
 }

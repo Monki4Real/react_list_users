@@ -5,16 +5,16 @@ import { User } from './User.jsx';
 
 
 
-export const Users = ({ items, isLoading }) => {
-
+export const Users = ({ items, isLoading, searchValue, onChangeSearchValue, invites, onClickInvite, onClickSendInvites }) => {
+    console.log(searchValue)
     return (
         <>
             <div className='container'>
                 <div className="search">
-                    <input type="text" placeholder="Найти пользователя..." />
+                    <input value={searchValue} onChange={onChangeSearchValue} type="text" placeholder="Найти пользователя..." />
                 </div>
                 {isLoading ? (
-                    <div className="skeleton-list">
+                    <div className="users-list">
                         <Skeleton />
                         <Skeleton />
                         <Skeleton />
@@ -22,13 +22,18 @@ export const Users = ({ items, isLoading }) => {
                 ) : (
                     <ul className="users-list">
                         {
-                            items.map(obj =>
-                                <User first_name={obj.first_name} last_name={obj.last_name} email={obj.email} avatar={obj.avatar} />)
+                            items.filter(obj => {
+                                const fullName = (obj.first_name + obj.last_name).toLowerCase();
+                                return fullName.includes(searchValue.toLowerCase()) || obj.email.toLowerCase().includes(searchValue.toLowerCase());
+                            }).map(obj =>
+                                <User onClickInvite={onClickInvite} isInvited={invites.includes(obj.id)} key={obj.id} {...obj} />)
                         }
 
                     </ul>
                 )}
-                <button className="send-invite">Отправить приглашение</button>
+                {
+                    invites.length > 0 && (<button onClick={onClickSendInvites} className="send-invite">Отправить приглашение</button>)
+                }
             </div>
         </>
     );
